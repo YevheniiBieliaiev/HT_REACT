@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/Reset.scss";
+import "./css/App.scss";
+import { useState } from "react";
+import AddSong from "./components/AddSong";
+import AddList from "./components/AddList";
+import SONGS from "./components/songsList";
+
 
 function App() {
+  const [songsData, setSongsData] = useState(SONGS);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <AddSong />
+      <ul className="songs__list">
+        {
+          songsData.map(songItem => <AddList song={songItem} key={songItem.id} />)
+        }
+      </ul>
+      <span className="songs__counter">Number of songs: {songsData.length}</span>
+    </div >
   );
 }
 
