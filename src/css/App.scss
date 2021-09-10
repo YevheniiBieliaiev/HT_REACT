@@ -1,0 +1,66 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+.clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+body {
+  font-family: "Libre Baskerville", serif;
+}
+input {
+  font-family: "Libre Baskerville", serif;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 640px;
+  margin: 40px auto;
+  background: #bde2f7;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  //form
+  .adding__song {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  //list
+  .songs__list {
+    width: 580px;
+    background: #a1d5f5;
+    margin: 10px 40px;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    color: #242435;
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      .song__details {
+        margin-right: 20px;
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  .songs__counter {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #242435;
+  }
+}
