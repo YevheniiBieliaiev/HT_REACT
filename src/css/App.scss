@@ -1,63 +1,48 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+.clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
 body {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 input {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
 }
 .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 640px;
   margin: 40px auto;
   background: #bde2f7;
   border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   //form
   .adding__song {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    input[type="text"] {
-      padding: 15px;
-      margin: 10px;
-      background: #fffdfd;
-      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-      width: 240px;
-      border: 2px solid transparent;
-      border-radius: 15px;
-      color: #242435;
-      &:focus {
-        outline: none;
-        border-color: #d1cccc;
-      }
-    }
-    input[type="button"] {
-      cursor: pointer;
-      margin: 10px;
-      width: 150px;
-      height: 49px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 15px;
-      background: #7df109;
-      opacity: 0.8;
-      color: #faf0c7;
-      &:hover {
-        background: #77e609;
-        opacity: 0.9;
-      }
-      &:active {
-        background: #6cce0b;
-      }
-    }
   }
   //list
   .songs__list {
+    width: 580px;
     background: #a1d5f5;
     margin: 10px 40px;
     padding: 15px;
     border-radius: 15px;
     font-size: 14px;
     line-height: 20px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     color: #242435;
     li {
       display: flex;
@@ -67,32 +52,6 @@ input {
         margin-right: 20px;
         span {
           display: block;
-        }
-      }
-      .button {
-        cursor: pointer;
-        margin-right: 15px;
-        width: 60px;
-        height: 40px;
-        border-radius: 15px;
-        border: none;
-        &:hover{
-          opacity: 0.8;
-        }
-        &:active{
-          opacity: 1;
-        }
-      }
-      .like {
-        background: #f8607e;
-        &:active {
-          background: #f74165;
-        }
-      }
-      .delete {
-        background: #5687f3;
-        &:active {
-          background: #3774f7;
         }
       }
     }

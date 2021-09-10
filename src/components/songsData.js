@@ -1,10 +1,4 @@
-function id() {
-  let id = 0;
-  return function () {
-    return ++id;
-  }
-}
-let songID = id();
+import songID from "../generatorID";
 
 const SONGS = [{
   id: songID(),

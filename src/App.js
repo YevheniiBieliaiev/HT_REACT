@@ -1,22 +1,43 @@
 import "./css/Reset.scss";
 import "./css/App.scss";
 import { useState } from "react";
+import SONGS from "./components/songsData";
+import AddSongButton from "./components/UI/button/add-song-button/AddSongButton";
+import ModalAddSOng from "./components/UI/modal/ModalAddSong";
 import AddSong from "./components/AddSong";
-import AddList from "./components/AddList";
-import SONGS from "./components/songsList";
+import SongsList from "./components/SongsList";
+import SongsCounter from "./components/SongsCounter";
 
 
 function App() {
-  const [songsData, setSongsData] = useState(SONGS);
+  const [songs, setSongsArray] = useState(SONGS);
+  const [modal, setModal] = useState(false);
+
+  const newSong = (song) => {
+    setSongsArray([...songs, song]);
+    setModal(false)
+  }
+  const deleteSong = (id) => {
+    setSongsArray(songs.filter(song => song.id !== id))
+  }
+
+  const isLike = (id, isLiked) => {
+    songs.forEach(song => {
+      if (id === song.id) {
+        song.isLiked = !isLiked;
+      }
+    })
+    setSongsArray([...songs]);
+  }
+
   return (
     <div className="App">
-      <AddSong />
-      <ul className="songs__list">
-        {
-          songsData.map(songItem => <AddList song={songItem} key={songItem.id} />)
-        }
-      </ul>
-      <span className="songs__counter">Number of songs: {songsData.length}</span>
+      <AddSongButton style={{ marginTop: "20px" }} onClick={() => setModal(true)}>Add new song</AddSongButton>
+      <ModalAddSOng visible={modal} setVisible={setModal}>
+        <AddSong newSong={newSong} />
+      </ModalAddSOng>
+      <SongsList initialSongsArray={songs} deleteSong={deleteSong} isLike={isLike}/>
+      <SongsCounter counterData={songs} />
     </div >
   );
 }

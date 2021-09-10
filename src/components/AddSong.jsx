@@ -1,16 +1,61 @@
-function AddSong() {
+import { useState } from "react";
+import Input from "./UI/input/Input";
+import songID from "../generatorID";
+import AddSongButton from "./UI/button/add-song-button/AddSongButton";
+
+
+function AddSong({ newSong }) {
+
+  const [song, setSong] = useState({
+    author: "",
+    song: "",
+    albumName: "",
+    releaseDate: ""
+  });
+
+  const ADD_SONG_DATA = (event) => {
+    event.preventDefault();
+
+    const NEW_SONGS_DATA = {
+      ...song,
+      id: songID(),
+      isLiked: false
+    }
+    newSong(NEW_SONGS_DATA)
+  }
+
   return (
-    <div className="adding__song">
-        <div className="song__name">
-          <input className="input__box band" type="text" placeholder="Band..." />
-          <input className="input__box song" type="text" placeholder="Song..." />
-        </div>
-        <div className="song__detail">
-          <input className="input__box album" type="text" placeholder="Album..." />
-          <input className="input__box release__date" type="text" placeholder="Release year..." />
-        </div>
-        <input className="button add" type="button" value="Add new song" />
-    </div>
+    <form className="adding__song">
+      <div className="song__name">
+        <Input type="text"
+          value={song.author}
+          name="band"
+          placeholder="Band..."
+          onChange={(event) => setSong({ ...song, author: event.target.value })}
+        />
+        <Input type="text"
+          value={song.song}
+          name="song"
+          placeholder="Song..."
+          onChange={(event) => setSong({ ...song, song: event.target.value })}
+        />
+      </div>
+      <div className="song__detail">
+        <Input type="text"
+          value={song.albumName}
+          name="album"
+          placeholder="Album..."
+          onChange={(event) => setSong({ ...song, albumName: event.target.value })}
+        />
+        <Input type="text"
+          value={song.releaseDate}
+          name="release__date"
+          placeholder="Release year..."
+          onChange={(event) => setSong({ ...song, releaseDate: event.target.value })}
+        />
+      </div>
+      <AddSongButton type="submit" onClick={ADD_SONG_DATA}>Add song</AddSongButton>
+    </form>
   );
 }
 

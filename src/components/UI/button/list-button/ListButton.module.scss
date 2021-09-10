@@ -1,0 +1,27 @@
+.button {
+  cursor: pointer;
+  margin-right: 15px;
+  width: 60px;
+  height: 40px;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  &:hover {
+    opacity: 0.8;
+  }
+  &:active {
+    opacity: 1;
+  }
+}
+.like {
+  background: #f8607e;
+  &:active {
+    background: #f74165;
+  }
+}
+.delete {
+  background: #5687f3;
+  &:active {
+    background: #3774f7;
+  }
+}
