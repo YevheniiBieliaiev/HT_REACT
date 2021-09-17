@@ -1,17 +1,21 @@
 import clasess from "./UI/filter-select/Filter.module.scss";
+import { useContext } from "react";
+import FilterContext from "./UI/filter-select/Context";
 import Input from "./UI/input/Input";
 import Select from "./UI/filter-select/Select";
 import CheckBox from "./UI/filter-select/CheckBox";
 
-function SongsFilter({
-  data,
-  searchRequest,
-  setSearchRequest,
-  selectYear,
-  setSelectSongYear,
-  checked,
-  setCheckBox
-}) {
+function SongsFilter() {
+  const [
+    songs,
+    searchRequest,
+    setSearchRequest,
+    selectYear,
+    setSelectSongYear,
+    filterLiked,
+    setCheckBox
+  ] = useContext(FilterContext);
+
   return (
     <div className={clasess.filter__form}>
       <Input style={{ width: "350px" }}
@@ -23,7 +27,7 @@ function SongsFilter({
       />
       <Select
         value={selectYear}
-        songsData={data}
+        songsData={songs}
         onChange={(event) => setSelectSongYear(event.target.value)}
       />
       <CheckBox
@@ -31,8 +35,8 @@ function SongsFilter({
         type="checkbox"
         name="isLiked"
         id="isLiked"
-        checked={checked}
-        onChange={() => setCheckBox(!checked)}
+        checked={filterLiked}
+        onChange={() => setCheckBox(!filterLiked)}
       />
     </div>
   );

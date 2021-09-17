@@ -1,8 +1,8 @@
-import "./css/Reset.scss";
 import "./css/App.scss";
 import { useState, useMemo } from "react";
 import SONGS from "./components/songsData";
 import AddSongButton from "./components/UI/button/add-song-button/AddSongButton";
+import FilterContext from "./components/UI/filter-select/Context";
 import SongsFilter from "./components/SongsFilter";
 import ModalAddSOng from "./components/UI/modal/ModalAddSong";
 import AddSong from "./components/AddSong";
@@ -16,7 +16,7 @@ function App() {
   //for filter
   const [searchRequest, setSearchRequest] = useState("");
   const [selectYear, setSelectSongYear] = useState("");
-  const [checked, setCheckBox] = useState(false);
+  const [filterLiked, setCheckBox] = useState(false);
 
   const newSong = (song) => {
     setSongsArray([...songs, song]);
@@ -50,26 +50,28 @@ function App() {
       return songs.filter(song => song.song.toLowerCase().includes(searchRequest.toLowerCase()));
     } else if (Number(selectYear)) {
       return songs.filter(song => song.releaseDate.includes(selectYear));
-    } else if (checked) {
+    } else if (filterLiked) {
       return songs.filter(song => (song.isLiked));
     }
     return songs
-  }, [searchRequest, selectYear, checked, songs]);
+  }, [searchRequest, selectYear, filterLiked, songs]);
 
 
   return (
     <div className="App">
       <AddSongButton style={{ marginTop: "20px" }} onClick={() => setModal(true)}>Add new song</AddSongButton>
 
-      <SongsFilter
-        data={songs}
-        searchRequest={searchRequest}
-        setSearchRequest={setSearchRequest}
-        selectYear={selectYear}
-        setSelectSongYear={setSelectSongYear}
-        checked={checked}
-        setCheckBox={setCheckBox}
-      />
+      <FilterContext.Provider value={
+        [songs,
+          searchRequest,
+          setSearchRequest,
+          selectYear,
+          setSelectSongYear,
+          filterLiked,
+          setCheckBox]
+      }>
+        <SongsFilter />
+      </FilterContext.Provider >
 
       <ModalAddSOng visible={modal} setVisible={setModal}>
         <AddSong newSong={newSong} />
