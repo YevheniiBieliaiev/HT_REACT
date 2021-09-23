@@ -1,0 +1,47 @@
+.filter__form {
+  width: 640px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #a1d5f5;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+select {
+  padding: 15px;
+  margin: 10px;
+  background: #fffdfd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: bold;
+  color: #242435;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+    border-color: #d1cccc;
+  }
+  option {
+    background: #a1d5f5;
+  }
+}
+
+.checkbox__wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  input[type="checkbox"] {
+    background: #fffdfd;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+  }
+  label {
+    color: #f74165;
+    cursor: pointer;
+  }
+}
