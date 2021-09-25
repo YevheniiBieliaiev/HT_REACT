@@ -25,3 +25,9 @@
     background: #3774f7;
   }
 }
+.details {
+  background: #7ffa5a;
+  &:active {
+    background: #5af72a;
+  }
+}

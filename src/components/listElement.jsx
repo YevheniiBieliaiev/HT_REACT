@@ -1,10 +1,13 @@
 import DeleteButton from "./UI/button/list-button/DeleteButton";
 import LikeButton from "./UI/button/list-button/LikeButton";
+import DetailsButton from "./UI/button/list-button/DetailsButton";
 import AddLike from "./UI/add-like-img/AddLikeImg";
 import like from "./UI/add-like-img/like.svg"
+import { useHistory } from "react-router";
 
 
 function ListElement({ listData, deleteSong, isLike }) {
+  const history = useHistory();
 
   return listData.map(songItem => {
     return (
@@ -23,6 +26,11 @@ function ListElement({ listData, deleteSong, isLike }) {
           onClick={() => isLike(songItem.id, songItem.isLiked)}
           customClassName="like">{!(songItem.isLiked) ? "Like" : "Unlike"}
         </LikeButton>
+
+        <DetailsButton
+          onClick={() => history.push(`/usersongs/${songItem.author}`)}
+          customClassName="details">Details
+        </DetailsButton>
 
         <AddLike
           style={{ display: (songItem.isLiked) ? "block" : "none" }}
