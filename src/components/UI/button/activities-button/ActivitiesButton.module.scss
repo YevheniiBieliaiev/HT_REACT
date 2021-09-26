@@ -1,0 +1,20 @@
+.activities__btn {
+  cursor: pointer;
+  margin: 10px;
+  width: 150px;
+  height: 49px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 15px;
+  background: #7df109;
+  box-shadow: 0 0 10px #19f312;
+  opacity: 0.8;
+  color: #faf0c7;
+  &:hover {
+    background: #77e609;
+    opacity: 0.9;
+  }
+  &:active {
+    background: #6cce0b;
+  }
+}
